@@ -14,7 +14,7 @@ interface ITodoState {
 export const useTodoStore = defineStore('todo', {
   state: (): ITodoState => ({
     stateStatus: 'all',
-    stateView: 'grid',
+    stateView: 'list',
     items: [],
     editItem: null,
     removeSelectionItems: [],

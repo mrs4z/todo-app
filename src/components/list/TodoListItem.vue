@@ -18,6 +18,8 @@
     @click="todoItem.onSetEditModeHandler"
   )
     IconEdit
+    .todo__item-action-label Редактировать
+
 
 </template>
 
@@ -79,6 +81,22 @@ const todoItem = useTodoItem(props.item);
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    gap: 8px;
+
+    &-label {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 678px) {
+    grid-template-columns: auto;
+    align-items: flex-end;
+
+    &-action {
+      &-label {
+        display: block;
+      }
+    }
   }
 }
 </style>

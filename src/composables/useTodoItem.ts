@@ -33,7 +33,7 @@ const useTodoItem = (item: ITodoItem) => {
   };
 
   return {
-    isSelectedRemoveList,
+    isSelectedRemoveList: isSelectedRemoveList.value,
     onUpdateStatusHandler,
     onSetEditModeHandler,
     onToggleSelectionHandler,

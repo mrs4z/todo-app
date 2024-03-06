@@ -71,12 +71,31 @@ const onToggleRemoveModeHandler = () => {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
 
       &-left,
       &-right {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  @media screen and (max-width: 678px) {
+    &__title {
+      text-align: center;
+    }
+    &__content {
+      &-bar {
+        justify-content: center;
+
+        &-left,
+        &-right {
+          justify-content: center;
+        }
       }
     }
   }

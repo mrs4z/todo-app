@@ -7,7 +7,6 @@
         .ui__modal-container-header-title {{ props.title }}
         .ui__modal-container-header-action(@click="setState(false)")
           IconClose
-
       .ui__modal-container-content(v-if="$slots['content']")
         slot(name="content")
       .ui__modal-container-footer(v-if="$slots['footer']")
@@ -32,6 +31,7 @@ const setState = (state: boolean) => {
 
 <style lang="scss" scoped>
 .ui__modal {
+  width: 100%;
   &-overlay {
     width: 100%;
     height: 100%;
@@ -45,15 +45,18 @@ const setState = (state: boolean) => {
   }
 
   &-position {
-    position: fixed;
-    left: 50%;
+    position: absolute; // Или используйте position: fixed; для центрирования относительно вьюпорта
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
+    background: #fff;
+    border-radius: 4px;
+    max-width: 450px;
+    width: 100%;
   }
 
   &-container {
-    width: 450px;
     padding: 20px;
     background: #fff;
     border-radius: 4px;

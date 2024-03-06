@@ -46,6 +46,7 @@ const filteredItems = computed(() => {
     padding: 12px;
     border-radius: 4px;
     background: #eff7ff;
+    line-height: 20px;
   }
 }
 
