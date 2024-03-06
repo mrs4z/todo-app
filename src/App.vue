@@ -5,7 +5,7 @@
     .app__content-bar
       .app__content-bar-left
         SwitcherTypeView
-        SwitcherStatus
+        SwitcherStatus(v-if="todoStore.stateView === 'list'")
         RemoveMode
       .app__content-bar-right
         UiButton(

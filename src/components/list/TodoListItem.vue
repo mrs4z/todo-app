@@ -25,7 +25,7 @@
 import { computed } from 'vue';
 import type { ITodoItem } from '../../types/todo';
 import { ITodoStatus } from '../../types/todo';
-import TodoItemStatus from './TodoItemStatus.vue';
+import TodoItemStatus from '../TodoItemStatus.vue';
 import useTodo from '../../composables/useTodo';
 import IconEdit from '../icons/IconEdit.vue';
 import { useTodoStore } from '../../store/todo';

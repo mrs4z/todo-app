@@ -8,7 +8,7 @@ UiBadgeSelector(
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import UiBadgeSelector from '../../ui/ui-badge-selector.vue';
+import UiBadgeSelector from '../ui/ui-badge-selector.vue';
 
 interface IProps {
   modelValue: string | number;

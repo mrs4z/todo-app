@@ -13,11 +13,12 @@
   "dependencies": {
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
+    "dayjs": "^1.11.10",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",
     "vue": "^3.4.19",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.7.2",
