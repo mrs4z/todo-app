@@ -1,12 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import type { ITodoCreateItem, ITodoItem } from '../types/todo';
-import {
-  ITodoDeleteItem,
-  ITodoDeleteItems,
-  ITodoEditItem,
-  ITodoStatus,
-  ITodoUpdateStatusItem,
-} from '../types/todo';
+import { ITodoDeleteItems, ITodoEditItem, ITodoStatus, ITodoUpdateStatusItem } from '../types/todo';
 import { useTodoStore } from '../store/todo';
 import useStorage from './useStorage';
 

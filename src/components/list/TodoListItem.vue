@@ -1,21 +1,21 @@
 <template lang="pug">
 .todo__item(
-  @dblclick="onSetEditModeHandler"
+  @dblclick="todoItem.onSetEditModeHandler"
   :class="{ 'todo__item--completed': item.status === ITodoStatus.SUCCESS, 'todo__item--remove-mode': todoStore.isRemoveMode }"
 )
   .todo__item-selection(v-if="todoStore.isRemoveMode")
       UiCheckbox(
-        :model-value="isSelectedRemoveList"
-        @update:model-value="onToggleSelectionHandler"
+        :model-value="todoItem.isSelectedRemoveList"
+        @update:model-value="todoItem.onToggleSelectionHandler"
       )
   .todo__item-name {{ props.item.name }}
   .todo__item-tag
     TodoItemStatus(
       :model-value="props.item.status"
-      @update:model-value="onUpdateStatusHandler"
+      @update:model-value="todoItem.onUpdateStatusHandler"
     )
   .todo__item-action(
-    @click="onSetEditModeHandler"
+    @click="todoItem.onSetEditModeHandler"
   )
     IconEdit
 
@@ -26,41 +26,18 @@ import { computed } from 'vue';
 import type { ITodoItem } from '../../types/todo';
 import { ITodoStatus } from '../../types/todo';
 import TodoItemStatus from '../TodoItemStatus.vue';
-import useTodo from '../../composables/useTodo';
 import IconEdit from '../icons/IconEdit.vue';
 import { useTodoStore } from '../../store/todo';
 import UiCheckbox from '../../ui/ui-checkbox.vue';
+import useTodoItem from '../../composables/useTodoItem';
 
-const todo = useTodo();
 const todoStore = useTodoStore();
 interface IProps {
   item: ITodoItem;
 }
 
 const props = defineProps<IProps>();
-const isSelectedRemoveList = computed(() =>
-  todoStore.removeSelectionItems.some((u) => u === props.item.id),
-);
-
-const onUpdateStatusHandler = (status: number) => {
-  todo.updateItemStatus({
-    id: props.item.id,
-    status: status as ITodoStatus,
-  });
-};
-
-const onSetEditModeHandler = () => {
-  todoStore.editItem = props.item;
-};
-
-const onToggleSelectionHandler = (event: boolean) => {
-  if (event) {
-    todoStore.removeSelectionItems.push(props.item.id);
-  } else {
-    const findItemIndex = todoStore.removeSelectionItems.findIndex((u) => u === props.item.id);
-    todoStore.removeSelectionItems.splice(findItemIndex, 1);
-  }
-};
+const todoItem = useTodoItem(props.item);
 </script>
 
 <style lang="scss" scoped>

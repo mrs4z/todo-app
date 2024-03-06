@@ -1,25 +1,25 @@
 <template lang="pug">
 .todo__item(
-  @dblclick="onSetEditModeHandler" :data-id="props.item.id"
+  @dblclick="todoItem.onSetEditModeHandler" :data-id="props.item.id"
   :class="{ 'todo__item--success': props.item.status === ITodoStatus.SUCCESS }"
 )
   .todo__item-header
     .todo__item-header-title
       UiCheckbox(
-        :model-value="isSelectedRemoveList"
-        @update:model-value="onToggleSelectionHandler"
+        :model-value="todoItem.isSelectedRemoveList"
+        @update:model-value="todoItem.onToggleSelectionHandler"
         v-if="todoStore.isRemoveMode"
       )
       div {{ props.item.name }}
     .todo__item-header-action(
-      @click="onSetEditModeHandler"
+      @click="todoItem.onSetEditModeHandler"
     )
       IconEdit
   .todo__item-content {{ props.item.content }}
   .todo__item-status
     TodoItemStatus(
       :model-value="props.item.status"
-      @update:model-value="onUpdateStatusHandler"
+      @update:model-value="todoItem.onUpdateStatusHandler"
     )
   .todo__item-date Обновлено {{ dateFormatter }}
 </template>
@@ -32,8 +32,9 @@ import TodoItemStatus from '../TodoItemStatus.vue';
 import useTodo from '../../composables/useTodo';
 import { useDayjs } from '../../composables/useDayjs';
 import UiCheckbox from '../../ui/ui-checkbox.vue';
-import { useTodoStore } from '../../store/todo.ts';
+import { useTodoStore } from '../../store/todo';
 import IconEdit from '../icons/IconEdit.vue';
+import useTodoItem from '../../composables/useTodoItem';
 
 interface IProps {
   item: ITodoItem;
@@ -43,32 +44,9 @@ const props = defineProps<IProps>();
 const todo = useTodo();
 const todoStore = useTodoStore();
 const dayJs = useDayjs();
-
-const isSelectedRemoveList = computed(() =>
-  todoStore.removeSelectionItems.some((u) => u === props.item.id),
-);
-
-const onUpdateStatusHandler = (status: number) => {
-  todo.updateItemStatus({
-    id: props.item.id,
-    status: status as ITodoStatus,
-  });
-};
+const todoItem = useTodoItem(props.item);
 
 const dateFormatter = computed(() => dayJs(props.item.updatedAt).format('YYYY-MM-DD HH:mm'));
-
-const onToggleSelectionHandler = (event: boolean) => {
-  if (event) {
-    todoStore.removeSelectionItems.push(props.item.id);
-  } else {
-    const findItemIndex = todoStore.removeSelectionItems.findIndex((u) => u === props.item.id);
-    todoStore.removeSelectionItems.splice(findItemIndex, 1);
-  }
-};
-
-const onSetEditModeHandler = () => {
-  todoStore.editItem = props.item;
-};
 </script>
 
 <style lang="scss" scoped>
