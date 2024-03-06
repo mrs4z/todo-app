@@ -50,6 +50,8 @@ const onSelectionHandler = (value: string | number) => {
 const closeDropdown = (event: MouseEvent) => {
   if (!event.target) return;
 
+  if (!refDropdown.value || !refButton.value) return;
+
   if (
     !event.composedPath().includes(refDropdown.value) &&
     !event.composedPath().includes(refButton.value)

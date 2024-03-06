@@ -60,7 +60,7 @@ const data = ref({
 });
 
 onBeforeMount(() => {
-  if (isEdit.value) {
+  if (isEdit.value && props.item) {
     data.value.name = props.item.name;
     data.value.content = props.item.content;
   }
@@ -87,7 +87,7 @@ const onActionHandler = () => {
 
   const { name, content } = data.value;
 
-  if (isEdit.value) {
+  if (isEdit.value && props.item) {
     const update = todo.updateItem({
       id: props.item.id,
       name,

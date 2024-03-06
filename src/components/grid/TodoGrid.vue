@@ -44,12 +44,12 @@ const getCountOfType = (type: ITodoStatus) =>
 
 const getItemsOfType = (type: ITodoStatus) => todoStore.items.filter((u) => u.status === type);
 
-const onEndDraggable = (event) => {
-  const itemId = event.item.dataset.id; // Убедитесь, что у вашего TodoGridItem есть атрибут data-id="{{element.id}}"
+const onEndDraggable = (event: any) => {
+  const itemId = event.item.dataset.id;
   const columnStatus = event.to.dataset.columnValue;
   let newStatus = ITodoStatus.SUCCESS;
 
-  if (parseInt(columnStatus) === 0) {
+  if (parseInt(columnStatus, 10) === 0) {
     newStatus = ITodoStatus.IN_PROGRESS;
   }
 

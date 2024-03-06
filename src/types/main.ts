@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import useTodo from '../composables/useTodo.ts';
 import { useTodoStore } from '../store/todo.ts';
+import { ITodoItem } from './todo.ts';
 
 export const useMainStore = defineStore('main', {
   actions: {
@@ -8,7 +9,7 @@ export const useMainStore = defineStore('main', {
       const todo = useTodo();
       const todoStore = useTodoStore();
 
-      todoStore.items = todo.getAllTodoListFromStorage();
+      todoStore.items = todo.getAllTodoListFromStorage() as ITodoItem[];
     },
   },
 });
