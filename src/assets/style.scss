@@ -1,0 +1,21 @@
+@import 'normalize.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  .form__item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
